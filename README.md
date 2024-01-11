@@ -46,5 +46,5 @@
 
 
 ## 실행 결과
-![1주차 실행결과](https://github.com/spicyseok/comento.git)
+![1차 결과](https://github.com/spicyseok/comento/assets/117507997/b6d448ac-f439-4f64-9ff0-b1ec313702d2)
 
