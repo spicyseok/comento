@@ -1,0 +1,33 @@
+## 월별 접속자 수 
+
+SELECT DATE_FORMAT(createDate, '%Y-%m') AS month, COUNT(*) AS visitor_count
+FROM requestInfo
+GROUP BY month;
+
+## 일자별 접속자 수
+
+SELECT createDate, COUNT(*) AS numberOfUsers
+FROM requestInfo
+GROUP BY createDate;
+
+## 평균 하루 로그인 수
+
+SELECT AVG(numberOfUsers) AS averageDailyLogins
+FROM (
+  SELECT COUNT(*) AS numberOfUsers
+  FROM (
+    SELECT createDate, userID
+    FROM requestInfo
+    GROUP BY createDate, userID
+  ) AS uniqueUsers
+  GROUP BY createDate
+) AS dailyUsers;
+
+## 부서별 월별 로그인 수
+
+SELECT DATE_FORMAT(createDate, '%Y-%m') AS month, department, COUNT(DISTINCT userID) AS numberOfUsers
+FROM requestInfo
+GROUP BY month, department;
+
+ -> department를 requestInfo에 넣는게 가장 좋은 방법이다. 
+    이유는 부서 정보에 대한 정확성과 일관성을 유지하기 위해 적절한 데이터 유효성 검사나 외래 키 제약 등을 고려할 수 있습니다.
